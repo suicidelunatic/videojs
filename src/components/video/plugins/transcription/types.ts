@@ -12,4 +12,6 @@ export interface PlayerConfig extends videojs.PlayerOptions {
   defaultTranscriptId: string;
   placementIndex?: number;
   container: HTMLDivElement;
+  onOpen?: () => void;
+  onClose?: () => void;
 }

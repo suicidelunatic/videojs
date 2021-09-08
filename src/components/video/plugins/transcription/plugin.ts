@@ -79,13 +79,19 @@ class TranscriptionSelector extends Plugin {
 
   setTranscription(value: string): void {
     // change this function, i don't have a time
+    const {onOpen, onClose} = this.config;
     if (value) {
+      if (onOpen){
+        onOpen();
+      }
       const parsedValue = parse(value).entries;
-      const html = parsedValue
+      this.config.container.innerHTML = parsedValue
         .map((entry) => `<p>${entry.text}</p>`)
         .join("\n");
-      this.config.container.innerHTML = html;
     } else {
+      if (onClose){
+        onClose();
+      }
       this.config.container.innerHTML = "";
     }
   }

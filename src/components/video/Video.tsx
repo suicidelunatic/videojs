@@ -35,6 +35,7 @@ const Video: React.FC<VideoProps> = ({
   const playerRef = React.useRef<VideoPlayer>();
 
   const posterError = React.useRef(false);
+  const [isTranscriptionsHidden, setIsTranscriptionsHidden]= React.useState(true);
 
   React.useEffect(() => {
     if (playerRef.current && playerRef.current.dispose) {
@@ -53,6 +54,8 @@ const Video: React.FC<VideoProps> = ({
           transcriptionSelector: {
             // defaultTranscriptId: "english",
             container: transcriptonContainerRef.current,
+            onOpen: () => setIsTranscriptionsHidden(false),
+            onClose: () => setIsTranscriptionsHidden(true),
           },
         },
         ...options,
@@ -120,7 +123,9 @@ const Video: React.FC<VideoProps> = ({
           }}
         />
       </div>
-      <div className={classNames(styles.transcript, styles.hidden)}>
+      <div className={classNames(styles.transcript, {
+        [styles.hidden]: isTranscriptionsHidden,
+      })}>
         <div className={styles.transcriptHeader}>Video transcript</div>
         <div
           ref={transcriptonContainerRef}

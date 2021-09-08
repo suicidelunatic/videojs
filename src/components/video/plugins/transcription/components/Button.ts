@@ -51,6 +51,11 @@ class Button extends VideoJsButtonClass {
       }
     }
 
+    // TODO temporary solution
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    menu.menuButton_.el_.setAttribute('title', "Transcription")
+
     return menu;
   }
 }
