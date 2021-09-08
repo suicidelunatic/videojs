@@ -81,7 +81,6 @@ class TranscriptionSelector extends Plugin {
     // change this function, i don't have a time
     if (value) {
       const parsedValue = parse(value).entries;
-      console.log(value);
       const html = parsedValue
         .map((entry) => `<p>${entry.text}</p>`)
         .join("\n");
