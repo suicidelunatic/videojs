@@ -120,10 +120,13 @@ const Video: React.FC<VideoProps> = ({
           }}
         />
       </div>
-      <div
-        ref={transcriptonContainerRef}
-        className={styles.transcriptContainer}
-      />
+      <div className={classNames(styles.transcript, styles.hidden)}>
+        <div className={styles.transcriptHeader}>Video transcript</div>
+        <div
+          ref={transcriptonContainerRef}
+          className={styles.transcriptContainer}
+        />
+      </div>
     </>
   );
 };

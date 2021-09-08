@@ -31,6 +31,10 @@
   --global-outline: 0 0 0 var(--outline-width) var(--outline-color);
 }
 
+body {
+  padding: 2rem;
+}
+
 .wrapper {
   display: flex;
   width: 100%;
@@ -172,17 +176,38 @@
   }
 }
 
+.transcript {
+  margin-top: 1rem;
+  border: 1px solid rgba(43, 51, 63, 0.7);
+  text-align: left;
+}
+
+.transcript.hidden {
+  display: none;
+}
+
+.transcriptHeader {
+  background-color: rgba(43, 51, 63, 0.7);
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+}
+
 .transcriptContainer {
   max-height: 200px;
-  border: 1px solid black;
-  overflow-y: scroll;
-  text-align: left;
+  overflow: auto;
   padding: 1rem;
 }
 
 .transcriptContainer:empty {
   display: none;
 }
-.transcriptContainer div {
-  margin-bottom: 1rem;
+
+.transcriptContainer > * {
+  margin-top: 1rem;
+}
+
+.transcriptContainer > *:first-child {
+  margin-top: 0;
 }
