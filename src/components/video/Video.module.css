@@ -1,47 +1,4 @@
-:root {
-  /* Stemscopes Colors */
-
-  --primary-400: #2a8dde;
-  --primary-500: #006cd8;
-  --primary-600: #0055be;
-  --basic-100: #fff;
-  --info-400: #867aff;
-
-  /* General variables */
-
-  --general-line-height: 1.75rem; /* 28px */
-  --general-lg-padding-tb: 11px;
-
-  /* Animation */
-
-  --global-transition: all 0.3s ease-out;
-
-  /* Button config */
-
-  --button-border-width: 1px;
-  --button-lg-min-height: calc(
-    var(--general-line-height) +
-      (var(--general-lg-padding-tb) + var(--button-border-width)) * 2
-  );
-
-  /* Outline */
-
-  --outline-color: var(--info-400);
-  --outline-width: 4px;
-  --global-outline: 0 0 0 var(--outline-width) var(--outline-color);
-}
-
-body {
-  padding: 2rem;
-}
-
 .wrapper {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-
   :global {
     .vjs-resolution-button .vjs-icon-placeholder::before {
       content: "\f110";
@@ -178,7 +135,7 @@ body {
 
 .transcript {
   margin-top: 1rem;
-  border: 1px solid rgba(43, 51, 63, 0.7);
+  border: 1px solid var(--video-player-color);
   text-align: left;
 }
 
@@ -187,11 +144,11 @@ body {
 }
 
 .transcriptHeader {
-  background-color: rgba(43, 51, 63, 0.7);
   padding: 0.5rem 1rem;
   text-transform: uppercase;
   font-weight: bold;
-  color: #fff;
+  background-color: var(--video-player-color);
+  color: var(--basic-100);
 }
 
 .transcriptContainer {

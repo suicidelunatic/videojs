@@ -1,0 +1,33 @@
+.wrapper {
+
+}
+
+.item {
+  display: grid;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+@media all and (min-width: 640px) and (max-width: 900px) {
+  .item {
+    grid-template-columns: 0.5fr 1fr;
+  }
+}
+
+.item:not(:first-child) {
+  margin-top: 20px;
+}
+
+.imageWrapper {
+  max-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--video-player-color);
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}

@@ -111,18 +111,16 @@ const Video: React.FC<VideoProps> = ({
   }, [transcriptons]);
 
   return (
-    <>
-      <div className={classNames(className, styles.wrapper)}>
-        <video
-          ref={videoRef}
-          className="video-js"
-          onError={(event) => {
-            if (posterError.current) {
-              onError(event);
-            }
-          }}
-        />
-      </div>
+    <div className={classNames(className, styles.wrapper)}>
+      <video
+        ref={videoRef}
+        className="video-js"
+        onError={(event) => {
+          if (posterError.current) {
+            onError(event);
+          }
+        }}
+      />
       <div className={classNames(styles.transcript, {
         [styles.hidden]: isTranscriptionsHidden,
       })}>
@@ -132,7 +130,7 @@ const Video: React.FC<VideoProps> = ({
           className={styles.transcriptContainer}
         />
       </div>
-    </>
+    </div>
   );
 };
 

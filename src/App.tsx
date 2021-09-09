@@ -1,7 +1,7 @@
 import React from "react";
 import { VideoTypes } from "./components/video/duck";
-import { Video } from "./components";
-import "./App.css";
+import { Video, Info } from "./components";
+import styles from "./App.module.css";
 
 const src = `${process.env.REACT_APP_URL}/2.P_13.4_ForceandMotionQC_1.m3u8`;
 
@@ -19,8 +19,11 @@ const transcriptons: VideoTypes.Transcription[] = [
 ];
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <Video src={src} transcriptons={transcriptons} />
+    <div className={styles.wrapper}>
+      <div className={styles.content}>
+        <Video src={src} transcriptons={transcriptons} className={styles.video} />
+        <Info className={styles.info} />
+      </div>
     </div>
   );
 };
