@@ -7,14 +7,9 @@ const src = `${process.env.REACT_APP_URL}/2.P_13.4_ForceandMotionQC_1.m3u8`;
 
 const transcriptons: VideoTypes.Transcription[] = [
   {
-    id: "english",
-    src: `${process.env.REACT_APP_URL}/english.vtt`,
-    label: "English",
-  },
-  {
     id: "alternative",
     src: `${process.env.REACT_APP_URL}/Force_and_Motion_(Alternative).vtt`,
-    label: "Alternative EN",
+    label: "English",
   },
 ];
 const App: React.FC = () => {
