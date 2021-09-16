@@ -1,5 +1,5 @@
 export interface Transcription {
   id: string;
   src: string;
-  label: "english" | "spanish";
+  label: "english" | "spanish" | "alternative en";
 }

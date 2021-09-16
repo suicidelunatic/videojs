@@ -12,6 +12,11 @@ const transcriptons: VideoTypes.Transcription[] = [
     label: "english",
   },
   {
+    id: "alternative",
+    src: `${process.env.REACT_APP_URL}/Force_and_Motion_(Alternative).vtt`,
+    label: "alternative en",
+  },
+  {
     id: "spanish",
     src: `${process.env.REACT_APP_URL}/force_and_motion_spa.vtt`,
     label: "spanish",
