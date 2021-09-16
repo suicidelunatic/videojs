@@ -168,3 +168,7 @@
 .transcriptContainer > *:first-child {
   margin-top: 0;
 }
+
+:global(.vjs-menu li) {
+  text-transform: capitalize !important;
+}
