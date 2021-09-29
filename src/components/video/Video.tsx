@@ -5,17 +5,21 @@ import videojs from "video.js";
 import "video.js/dist/video-js.css";
 import "videojs-hls-quality-selector";
 import "videojs-hls-quality-selector/dist/videojs-hls-quality-selector.css";
+import 'videojs-contrib-quality-levels';
 import "./plugins/transcription/plugin";
 import { VideoTypes } from "./duck";
 import styles from "./Video.module.css";
 
 interface VideoProps {
-  src: string;
   className?: string;
   options?: any;
   autoResolution?: boolean;
   transcriptons: VideoTypes.Transcription[];
   onError?: React.DOMAttributes<HTMLVideoElement>["onError"];
+  sources: {
+    src: string;
+    type: string;
+  }[];
 }
 
 type VideoPlayer = videojs.Player & {
@@ -24,10 +28,10 @@ type VideoPlayer = videojs.Player & {
 };
 
 const Video: React.FC<VideoProps> = ({
-  src,
   options,
   className,
   transcriptons,
+  sources,
   onError = () => {},
 }) => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
@@ -49,6 +53,7 @@ const Video: React.FC<VideoProps> = ({
       {
         controls: true,
         fluid: true,
+        sources,
         plugins: {
           hlsQualitySelector: { displayCurrentQuality: true },
           transcriptionSelector: {
@@ -60,9 +65,6 @@ const Video: React.FC<VideoProps> = ({
         },
         ...options,
       },
-      () => {
-        playerRef.current?.src([{ src, type: "application/x-mpegURL" }]);
-      }
     ) as VideoPlayer;
 
     return () => {
@@ -78,10 +80,6 @@ const Video: React.FC<VideoProps> = ({
     playerRef.current?.height(options?.height);
   }, [options?.height]);
 
-  React.useEffect(() => {
-    playerRef.current?.src([{ src, type: "application/x-mpegURL" }]);
-  }, [src]);
-
   // use smth else
   const fetchTranscription = async (
     transcriptons: VideoTypes.Transcription[]
@@ -93,21 +91,23 @@ const Video: React.FC<VideoProps> = ({
   };
 
   React.useEffect(() => {
-    fetchTranscription(transcriptons)
-      .then((texts) => {
-        const preparedTranscription = transcriptons.map(
-          (transcripton, index) => ({
-            id: transcripton.id,
-            label: transcripton.label,
-            value: texts[index],
-          })
-        );
+    if (transcriptons) {
+      fetchTranscription(transcriptons)
+        .then((texts) => {
+          const preparedTranscription = transcriptons.map(
+            (transcripton, index) => ({
+              id: transcripton.id,
+              label: transcripton.label,
+              value: texts[index],
+            })
+          );
 
-        playerRef.current
-          ?.transcriptionSelector()
-          .trigger("addTranscription", { data: preparedTranscription });
-      })
-      .catch(() => {});
+          playerRef.current
+            ?.transcriptionSelector()
+            .trigger("addTranscription", { data: preparedTranscription });
+        })
+        .catch(() => {});
+    }
   }, [transcriptons]);
 
   return (

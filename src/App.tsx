@@ -16,7 +16,10 @@ const App: React.FC = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
-        <Video src={src} transcriptons={transcriptons} className={styles.video} />
+        <Video sources={[{
+          src,
+          type: 'application/x-mpegURL'
+        }]} transcriptons={transcriptons} className={styles.video} />
         <Info className={styles.info} />
       </div>
     </div>
